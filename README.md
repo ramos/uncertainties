@@ -1,5 +1,5 @@
 
-#A MODULE for linear propagation of errors
+# A MODULE for linear propagation of errors
 
 This module implements linear propagation of errors, including
 correlations of variables.
