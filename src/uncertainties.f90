@@ -12,13 +12,11 @@
 
 module uncertainties
 
-  USE ISO_FORTRAN_ENV, Only : error_unit, output_unit
+  USE ISO_FORTRAN_ENV, Only : error_unit, output_unit, DP=>real64
 
   IMPLICIT NONE
 
   private
-
-  integer, parameter :: DP = Kind(1.D0)
 
   public :: DP
   
@@ -137,6 +135,34 @@ module uncertainties
        type (ureal), intent (in) :: a
        type (ureal) :: ucos
      end function ucos
+     module elemental function utan(a)
+       type (ureal), intent (in) :: a
+       type (ureal) :: utan
+     end function utan
+     module elemental function uasin(a)
+       type (ureal), intent (in) :: a
+       type (ureal) :: uasin
+     end function uasin
+     module elemental function uacos(a)
+       type (ureal), intent (in) :: a
+       type (ureal) :: uacos
+     end function uacos
+     module elemental function uatan(a)
+       type (ureal), intent (in) :: a
+       type (ureal) :: uatan
+     end function uatan
+     module elemental function usinh(a)
+       type (ureal), intent (in) :: a
+       type (ureal) :: usinh
+     end function usinh
+     module elemental function ucosh(a)
+       type (ureal), intent (in) :: a
+       type (ureal) :: ucosh
+     end function ucosh
+     module elemental function utanh(a)
+       type (ureal), intent (in) :: a
+       type (ureal) :: utanh
+     end function utanh
      module elemental function usqrt(a)
        type (ureal), intent (in) :: a
        type (ureal) :: usqrt
@@ -155,7 +181,51 @@ module uncertainties
      end function uexp
   end interface
 
-  public :: usin, ucos, usqrt, ulog, uexp
+  interface sin
+     module procedure usin
+  end interface sin
+  interface cos
+     module procedure ucos
+  end interface cos
+  interface tan
+     module procedure utan
+  end interface tan
+  
+  interface asin
+     module procedure uasin
+  end interface asin
+  interface acos
+     module procedure uacos
+  end interface acos
+  interface atan
+     module procedure uatan
+  end interface atan
+  
+  interface sinh
+     module procedure usinh
+  end interface sinh
+  interface cosh
+     module procedure ucosh
+  end interface cosh
+  interface tanh
+     module procedure utanh
+  end interface tanh
+  
+  interface sqrt
+     module procedure usqrt
+  end interface sqrt
+  interface log
+     module procedure ulog
+  end interface log
+  interface log10
+     module procedure ulog10
+  end interface log10
+  interface exp
+     module procedure uexp
+  end interface exp
+  
+  public :: sin, cos, tan, asin, acos, atan, sinh, cosh, tanh, &
+       sqrt, log, log10, exp
   
 contains
 

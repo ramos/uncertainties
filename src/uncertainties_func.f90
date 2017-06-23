@@ -123,4 +123,123 @@ contains
     return
   end function ucos
   
+! ********************************
+! *
+  module elemental function utan(a)
+! *
+! ********************************
+    type (ureal), intent (in) :: a
+    type (ureal) :: utan
+
+    call utan%init(a%nid)
+    utan%id = a%id
+
+    utan%x   =  tan(a%x)
+    utan%del =  (1.0_DP + utan%x**2)*a%del
+           
+    return
+  end function utan
+  
+! ********************************
+! *
+  module elemental function uasin(a)
+! *
+! ********************************
+    type (ureal), intent (in) :: a
+    type (ureal) :: uasin
+
+    call uasin%init(a%nid)
+    uasin%id = a%id
+
+    uasin%x   = asin(a%x)
+    uasin%del = a%del/sqrt(1.0_DP - a%x**2)
+       
+    return
+  end function uasin
+
+! ********************************
+! *
+  module elemental function uacos(a)
+! *
+! ********************************
+    type (ureal), intent (in) :: a
+    type (ureal) :: uacos
+
+    call uacos%init(a%nid)
+    uacos%id = a%id
+
+    uacos%x   = acos(a%x)
+    uacos%del = -a%del/sqrt(1.0_DP - a%x**2)
+           
+    return
+  end function uacos
+  
+! ********************************
+! *
+  module elemental function uatan(a)
+! *
+! ********************************
+    type (ureal), intent (in) :: a
+    type (ureal) :: uatan
+
+    call uatan%init(a%nid)
+    uatan%id = a%id
+
+    uatan%x   =  atan(a%x)
+    uatan%del =  a%del/(1.0_DP + uatan%x**2)
+           
+    return
+  end function uatan
+  
+! ********************************
+! *
+  module elemental function usinh(a)
+! *
+! ********************************
+    type (ureal), intent (in) :: a
+    type (ureal) :: usinh
+
+    call usinh%init(a%nid)
+    usinh%id = a%id
+
+    usinh%x   = sinh(a%x)
+    usinh%del = cosh(a%x)*a%del
+       
+    return
+  end function usinh
+
+! ********************************
+! *
+  module elemental function ucosh(a)
+! *
+! ********************************
+    type (ureal), intent (in) :: a
+    type (ureal) :: ucosh
+
+    call ucosh%init(a%nid)
+    ucosh%id = a%id
+
+    ucosh%x   = cosh(a%x)
+    ucosh%del = sinh(a%x)*a%del
+           
+    return
+  end function ucosh
+  
+! ********************************
+! *
+  module elemental function utanh(a)
+! *
+! ********************************
+    type (ureal), intent (in) :: a
+    type (ureal) :: utanh
+
+    call utanh%init(a%nid)
+    utanh%id = a%id
+
+    utanh%x   =  tanh(a%x)
+    utanh%del =  (1.0_DP - utanh%x**2)*a%del
+           
+    return
+  end function utanh
+  
 end submodule uncertainties_func

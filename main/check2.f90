@@ -24,19 +24,18 @@ program check
   write(*,'(1A)', advance="NO")'z:   '
   call z%write()
 
-  w1 = usin(x+y)
-  w2 = (usin(x)*ucos(y) + ucos(x)*usin(y))
+  w1 = sin(x+y)
+  w2 = (sin(x)*cos(y) + cos(x)*sin(y))
   w1 = w1 - w2
   write(*,'(1A)', advance="NO")'zero: '
   call w1%write()
   
-  w2 = uexp(x)
+  w2 = exp(x)
   write(*,'(1A)', advance="NO")'exp(x):'
   call w2%write()
-  w3 = ulog(w2) - x
+  w3 = log(w2) - x
   write(*,'(1A)', advance="NO")'zero: '
   call w3%write()
-  
   
   stop
 end program check

@@ -14,7 +14,7 @@ INC=include/
 
 OBJ = uncertainties.o uncertainties_arith.o uncertainties_func.o
 
-all: $(OBJ) check1.x check2.x
+all: $(OBJ) check1.x check2.x check3.x
 
 uncertainties.o: uncertainties.f90
 	$(F90) -J $(INC) -c $^ -o $(INC)/$@ -I$(INC)
@@ -29,6 +29,9 @@ check1.x:  check1.f90  $(OBJ)
 	$(F90) -J $(INC) $(addprefix $(INC),$(OBJ)) $< -o $@ -I$(INC)
 
 check2.x:  check2.f90  $(OBJ)
+	$(F90) -J $(INC) $(addprefix $(INC),$(OBJ)) $< -o $@ -I$(INC)
+
+check3.x:  check3.f90  $(OBJ)
 	$(F90) -J $(INC) $(addprefix $(INC),$(OBJ)) $< -o $@ -I$(INC)
 
 clean:

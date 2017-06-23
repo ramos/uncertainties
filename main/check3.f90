@@ -12,38 +12,29 @@ program check
 
   use uncertainties
 
-  type (ureal) :: x, y, z, w1, w2, w3, r1, r2
+  type (ureal) :: x, y, z, w1, w2, w3
 
   x = (/3.0_DP,0.1_DP/)
-  y = (/1.0_DP,0.1_DP/)
-  z = (/1.0_DP,0.1_DP/)
-
-
+  y = (/12.0_DP,0.1_DP/)
+  z = (/2.0_DP,0.2_DP/)
   write(*,'(1A)', advance="NO")'x:   '
-  call x%write()                       ! x:   3.0000000000 +/- .100000
+  call x%write()
   write(*,'(1A)', advance="NO")'y:   '
-  call y%write()                       ! y:   1.0000000000 +/- .100000
-  write(*,*)
-  
-  w1 = usin(x+y)
-  w2 = usin(x+z)
-  w3 = (usin(x)*ucos(y) + ucos(x)*usin(y))
+  call y%write()
+  write(*,'(1A)', advance="NO")'z:   '
+  call z%write()
 
-  write(*,'(1A)', advance="NO")'w1: '
-  call w1%write()                       
-  write(*,'(1A)', advance="NO")'w2: '
-  call w2%write()
-  write(*,'(1A)', advance="NO")'w3: '
+  w1 = cosh(x+y)
+  w2 = (cosh(x)*cosh(y) + sinh(x)*sinh(y))
+  w3 = w1 - w2
+  write(*,'(1A)', advance="NO")'zero: '
   call w3%write()
-  write(*,*)
 
-  r1 = w1 - w3
-  r2 = w2 - w3
-
-  write(*,'(1A)', advance="NO")'result (w1-w3): '
-  call r1%write()                      
-  write(*,'(1A)', advance="NO")'result (w2-w3): '
-  call r2%write()
-
+  w1 = tanh(x+z)
+  w2 = (tanh(x)+tanh(z))/(1.0_DP + tanh(x)*tanh(z))
+  w3 = w1 - w2
+  write(*,'(1A)', advance="NO")'zero: '
+  call w3%write()
+  
   stop
 end program check
