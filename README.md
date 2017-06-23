@@ -28,7 +28,8 @@ initialized by assigning them to a 2-component 1d array.
   c = a+b ! variable c has value 3.0 and error sqrt(0.3**2+0.1**2)
 ```
 
-* Intric functions work by appending u to the function name.
+* Intrinsic functions work (currently supported are: sin, cos, tan,
+  asin, acos, atan, sinh, cosh, tanh, sqrt, log, log10, exp)
 
 ```
   type (ureal) :: a, b, c
@@ -36,7 +37,7 @@ initialized by assigning them to a 2-component 1d array.
   a = (/1.0D0,0.1D0/) ! variable a has value 1.0 and error 0.1
   b = (/2.0D0,0.3D0/) ! variable b has value 2.0 and error 0.3
 
-  c = usin(a) + usqrt(b) 
+  c = sin(a) + sqrt(b) 
 ```
 
 * All initialized variables are assumed uncorrelated. After,
